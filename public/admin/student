@@ -1,0 +1,25 @@
+            $table->unsignedBigInteger('quran_category_student_id');
+            $table->unsignedBigInteger('school_id');
+            $table->unsignedBigInteger('quran_teacher_id');
+            $table->string("firstName")->nullable();
+            $table->string("lastName")->nullable();
+            $table->enum("sexe",['Homme','Femme']);
+            $table->string('image');
+            $table->string('birth_certificate');
+            $table->date('dateOfBirthday');
+            $table->enum('statut',[
+                        'عادي','يتيم الاب','يتيم الام','يتيم الابوين','الوالدين مطلقين'
+
+                         ])->default('عادي');
+            $table->boolean('malad')->nullable();
+            $table->string('type_malade')->nullable();
+            $table->string('father_profession')->nullable();
+            $table->string('mother_profession')->nullable();
+            $table->enum('statut_familly',['ميسورة','متوسطة','ضعيفة'])->default('ميسورة');
+            $table->string('father_phone')->nullable();           
+            $table->string('mother_phone')->nullable();
+            $table->integer('N_parties_the_Koran');
+            $table->integer('current_party');
+            $table->foreign('quran_category_student_id')->references('id')->on('qurans_categories_students')->onDelete('cascade');
+            $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade'); 
+            $table->foreign('quran_teacher_id')->references('id')->on('qurans_teachers')->onDelete('cascade'); 
